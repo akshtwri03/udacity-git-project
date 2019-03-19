@@ -42,6 +42,15 @@
    Gender
    Birth Year
 
+## File Required
+  
+   To answer these questions using Python, you will need to write a Python script. To help guide your work in this project, a template with helper       code and comments is provided in a bikeshare.py file, and you will do your scripting in there also. You will need the three city dataset files        too:
+
+   chicago.csv
+   new_york_city.csv
+   washington.csv
+
+
 ## Statistics Computed
    We will learn about bike share use in Chicago, New York City, and Washington by computing a variety of descriptive statistics. In this project,       we'll write code to provide the following information:
 
@@ -67,3 +76,5 @@
       counts of each user type
       counts of each gender (only available for NYC and Chicago)
       earliest, most recent, most common year of birth (only available for NYC and Chicago)
+
+

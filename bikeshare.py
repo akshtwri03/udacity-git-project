@@ -106,11 +106,11 @@ def time_stats(df):
     start_time = time.time()
 
     # Find and Display the most common month
-    common_month = df['month'].value_counts().idxmax()
+    common_month = df['month'].mode().loc[0]
     print('This is the most common month: ',common_month)
     
     # Find and Display the most common day of week
-    common_day = df['day'].value_counts().idxmax()
+    common_day = df['day'].mode().loc[0]
     print('This is the most common day of week: ',common_day)
 
     # Find and Display the most common start hour
@@ -188,7 +188,7 @@ def user_stats(df):
         
     
         # Find most common year of birth
-        common_birth = df['Birth Year'].value_counts().idxmax()
+        common_birth = df['Birth Year'].mode().loc[0]
         
         print('The most common birth year: ',common_birth)
     

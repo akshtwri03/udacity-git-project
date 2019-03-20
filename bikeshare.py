@@ -23,8 +23,8 @@ def get_filters():
     #Get user input for city (chicago, new york city, washington).
     city = ''
     while True:
-        city = input("Please choose city either 'Chicago', 'New York City' or 'Washington': ")
-        if city not in cities:
+        city = input("Please choose city either 'Chicago', 'New York City' or 'Washington': ").lower()
+        if city.lower() not in cities:
             print("Sorry, wrong input. Please choose city either 'Chicago', 'New York City' or 'Washington'.")
             continue 
         else:
@@ -33,8 +33,8 @@ def get_filters():
     #Get user input for month (all, january, february, ... , june)
     month = ''
     while True:
-        month = input("Please choose 'all', or any month between january to june: ")
-        if month not in months:
+        month = input("Please choose 'all', or any month between january to june: ").lower()
+        if month.lower() not in months:
             print("Sorry wrong input. Please choose 'all', or any month between 'January to June'.")
             continue
         else:
@@ -45,8 +45,8 @@ def get_filters():
     #Get user input for day of week (all, monday, tuesday, ... sunday)
     day = ''
     while True:
-        day = input("Please choose 'all', or any day of a week: ")
-        if day not in week:
+        day = input("Please choose 'all', or any day of a week: ").lower()
+        if day.lower() not in week:
             print("Sorry wrong input. Please choose 'all', or any day of a week: ")
             continue
         else:
@@ -106,11 +106,11 @@ def time_stats(df):
     start_time = time.time()
 
     # Find and Display the most common month
-    common_month = df['month'].value_counts().idxmax()
+    common_month = df['month'].mode().loc[0]
     print('This is the most common month: ',common_month)
     
     # Find and Display the most common day of week
-    common_day = df['day'].value_counts().idxmax()
+    common_day = df['day'].mode().loc[0]
     print('This is the most common day of week: ',common_day)
 
     # Find and Display the most common start hour
@@ -188,7 +188,7 @@ def user_stats(df):
         
     
         # Find most common year of birth
-        common_birth = df['Birth Year'].value_counts().idxmax()
+        common_birth = df['Birth Year'].mode().loc[0]
         
         print('The most common birth year: ',common_birth)
     
@@ -220,6 +220,24 @@ def user_stats(df):
         
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+def more_raw_data(df):
+    """ Accesses csv files and displays more rows of its raw data"""
+ 
+ 
+    more_raw_data = ''
+    i = 0
+    while True:
+        more_raw_data = input(" Would you like to see more records of raw biking data(yes/no):   ").lower()
+        if more_raw_data == "yes":
+            print(df.iloc[i:i+5])
+            i+=5
+            continue
+        else:
+            break
+ 
+    print('-'*40)          
+ 
           
  
  
@@ -232,6 +250,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        more_raw_data(df)
        
  
         """ Asks user to restart program and clears screen if yes """
